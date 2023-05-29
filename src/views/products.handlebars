@@ -1,0 +1,13 @@
+<div>
+    <h2>Bienvenido {{#if user.rol}}Administrador{{/if}} {{user.name}}</h2>
+    {{#each products}}
+        <p> {{this.title}}: {{this.price}}$----ID:{{this._id}}----<button>Añadir al carrito</button>{{#if user.rol}}------<button> Modificar </button>{{/if}}</p>
+    {{/each}}
+    {{#if hasPrevPage}}
+        <a href="/api/products?page={{prevPage}}{{#if sort}}&sort={{sort}}{{/if}}{{#if query}}&query={{query}}{{/if}}{{#if stock}}&stock={{stock}}{{/if}}"><button>Anterior</button></a>
+    {{/if}}
+
+    {{#if hasNextPage}}
+        <a href="/api/products?page={{nextPage}}{{#if sort}}&sort={{sort}}{{/if}}{{#if query}}&query={{query}}{{/if}}{{#if stock}}&stock={{stock}}{{/if}}"><button>Siguiente</button></a>
+    {{/if}}
+</div>
