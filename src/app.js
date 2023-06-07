@@ -4,12 +4,14 @@ import __dirname from './utils.js'
 import mongoose from 'mongoose'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
+import passport from 'passport'
 
 import cartRouter from './router/carts.router.js'
 import productRouter from './router/products.router.js'
 import messageRouter from './router/message.router.js'
 import viewRouter from './router/router.views.js'
 import userRouter from './router/user.router.js'
+import initializePassport from './config/passport.config.js'
 
 
 const PORT = 8080 
@@ -32,6 +34,9 @@ app.use(session({
     resave: false,
     saveUninitialized:false
 }))
+initializePassport()
+app.use (passport.initialize())
+app.use(passport.session())
 
 app.engine("handlebars",handlebars.engine())
 app.set("views", __dirname + "/views")

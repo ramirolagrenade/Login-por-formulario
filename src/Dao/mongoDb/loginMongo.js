@@ -27,4 +27,16 @@ export default class ProductMongo {
 
         return result
     }
+
+    findOne = async (username)=>{
+        const result = await userModel.findOne({email:username})
+
+        return result
+    }
+
+    findById = async (id) => {
+        const result = await userModel.findById(id)
+
+        return result
+    }
 }
