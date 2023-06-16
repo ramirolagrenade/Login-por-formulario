@@ -14,23 +14,26 @@ const initializePassport = () => {
     passport.use('register', new LocalStrategy(
         {passReqToCallback:true, usernameField:'email'}, 
         async (req,username, password,done) =>{
-            const { first_name, last_name ,age , email } = req.body
+            const { first_name, last_name ,age , email, carts } = req.body
             try {
                 const user = await userMongo.findOne(username)
                 if(user){
                     console.log('El usuario existe')
                     return done(null,false)
                 }
+                let rol = 'Usuario'
                 const newUser = {
                     first_name, 
                     last_name, 
                     age,
-                    email, 
-                    password: createHash(password)
+                    email,
+                    carts, 
+                    password: createHash(password),
+                    rol
                 }
 
                 const result = await userMongo.addUser(newUser)
-                return done(null, result)
+                return done(null, result.manssage)
 
             } catch (error) {
                 return done("Error al registrar el usuario: " + error)
@@ -79,7 +82,7 @@ const initializePassport = () => {
                 email = profile._json.login 
             }
 
-            let user = await UserMongo.findOne(email)
+            let user = await userMongo.findOne(email)
 
             if(!user){
                 const newUser = {
@@ -89,7 +92,7 @@ const initializePassport = () => {
                     age: 18,
                     password: ''
                 }
-                const result = await UserMongo.addUser(newUser) 
+                const result = await userMongo.addUser(newUser) 
                 done(null,result) 
             } 
         } catch (error) {

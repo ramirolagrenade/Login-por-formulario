@@ -7,7 +7,22 @@ const schema = new mongoose.Schema({
     last_name:String,
     email:String,
     password:String,
-    rol: String
+    rol: String,
+    carts: {
+        type:[
+            {
+                cart:{
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref:"carts"
+                }
+            }
+        ],
+        default: []
+    }
+})
+
+schema.pre('find', function(){
+    this.populate("products.product");
 })
 
 const userModel = mongoose.model(userCollection, schema)
