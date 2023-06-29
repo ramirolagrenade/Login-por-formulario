@@ -6,7 +6,7 @@ import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import passport from 'passport'
 
-import "./config/dbConnection.js";
+import "./config/dbConnection.js"
 import cartRouter from './router/carts.router.js'
 import productRouter from './router/products.router.js'
 import messageRouter from './router/message.router.js'
@@ -17,8 +17,8 @@ import { options } from './config/options.js'
 
 
 export const PORT = options.server.port 
-
 const app = express() 
+const httServer = app.listen(PORT,() => console.log( `servidro funcionando en el PORT: ${PORT}}`))
 
 app.use(express.json()) 
 app.use(express.urlencoded({extended:true}))
