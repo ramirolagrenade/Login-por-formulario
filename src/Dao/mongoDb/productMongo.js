@@ -92,7 +92,7 @@ export default class ProductMongo {
     }
 
     getPaginate = async (options) => {
-        const { limit = 10, page = 1, sort, category, stock } = options
+        const { limit = 4, page = 1, sort, category, stock } = options
         const filter = {}
         if (category) {
             filter.category = category

@@ -6,20 +6,19 @@ import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import passport from 'passport'
 
+import "./config/dbConnection.js";
 import cartRouter from './router/carts.router.js'
 import productRouter from './router/products.router.js'
 import messageRouter from './router/message.router.js'
 import viewRouter from './router/router.views.js'
 import userRouter from './router/user.router.js'
 import initializePassport from './config/passport.config.js'
+import { options } from './config/options.js'
 
 
-const PORT = 8080 
-const MONGO = 'mongodb+srv://ramirolagrenade:8MI6v3LKbJK12lLw@ecommerce.24fvet8.mongodb.net/rl' 
+export const PORT = options.server.port 
 
 const app = express() 
-
-const connection = mongoose.connect(MONGO) 
 
 app.use(express.json()) 
 app.use(express.urlencoded({extended:true}))
@@ -27,13 +26,14 @@ app.use(express.static(__dirname + '/public'))
 
 app.use(session({
     store: new MongoStore({
-        mongoUrl:MONGO,
+        mongoUrl: options.mongoDB.url,
         ttl: 1500
     }),
-    secret:'CoderSecret',
+    secret: options.server.secretSession,
     resave: false,
     saveUninitialized:false
 }))
+
 initializePassport()
 app.use (passport.initialize())
 app.use(passport.session())
@@ -48,9 +48,3 @@ app.use('/api/carts', cartRouter)
 app.use('/api/chat', messageRouter)
 app.use('/api/products', productRouter)
 app.use('/api/session', userRouter)
-
-
-
-app.listen(PORT, ()=>{
-    console.log('Servidor funcionando en el puerto: ' + PORT) 
-})

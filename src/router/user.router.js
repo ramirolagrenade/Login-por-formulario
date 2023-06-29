@@ -52,5 +52,9 @@ router.get('/githubcallback', passport.authenticate('github', {failureRedirect:'
     res.redirect('/profile')
 })
 
+router.get('/current', async (req,res)=>{
+    
+})
+
 
 export default router

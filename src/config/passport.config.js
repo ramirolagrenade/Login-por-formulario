@@ -4,6 +4,7 @@ import userService from '../Dao/models/userModel.js'/////////
 import UserMongo from "../Dao/mongoDb/loginMongo.js"
 import { createHash, validatePassword } from '../utils.js'
 import GitHubStrategy from 'passport-github2'
+import { options } from '../config/options.js'
 
 const LocalStrategy = local.Strategy
 
@@ -71,9 +72,9 @@ const initializePassport = () => {
     }))
 
     passport.use('github', new GitHubStrategy({
-        clientID:'Iv1.43013858f37c01f1',
-        clientSecret:'977ca2b9824bb370966309c2ffbe32c562d88502',
-        callbackURL:'http://localhost:8080/api/session/githubcallback'
+        clientID: options.gitHub.clientID,
+        clientSecret: options.gitHub.clientSecret,
+        callbackURL: options.gitHub.callBackUrl
     }, async (accesToken, refreshToken, profile,done)=>{
         try {
             let email = profile._json.email 
