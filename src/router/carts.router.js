@@ -1,9 +1,13 @@
 import { Router } from 'express'
 import CartMongo from '../Dao/mongoDb/cartMongo.js'
 import cartModel from '../Dao/models/cartModel.js'
+import ProductMongo from '../Dao/mongoDb/productMongo.js'
+import {v4 as uuidv4} from "uuid"
+import productModel from '../Dao/models/productModel.js'
 
 const router = Router()
 const cartMongo = new CartMongo()
+const productMongo = new ProductMongo
 
 router.post('/', async (req, res) => {
     const newCart = { products: [] }
@@ -102,4 +106,50 @@ router.put('/:cid/products/:pid', async (req, res) => {
     })
 })
 
-export default router 
+router.post("/:cid/purchase",async(req,res)=>{
+    try{
+        const cartId = req.params.cid
+        const cart = cartMongo.findById(cartId)
+        if (cart){
+            if(!cart.products.length){
+                return res.send('El carrito esta vacio.')
+            }
+
+            const ticketProduct = []
+            const rejectProduct= []
+            let total = 0
+
+            for (let i = 0; i < cart.products.length; i++) {
+                const cartProduct = cart.products[i]
+                const productDB = await productMongo.findById(cartProduct.id)
+                if(cartProduct.quantity <= productDB.stock){
+                    ticketProduct.push({
+                        productId: cartProduct.id,
+                        price: cartProduct.price
+                    })
+                    total += cartProduct.quantity * productDB.price
+                }
+
+            }
+            const newTicket = {
+                code: uuidv4(),
+                purchase_datatime : new Date().toLocaleDateString(),
+                amount : total,
+                purchaser : req.user.email,
+                product: ticketProduct
+            }
+
+            const ticketCreate = await ticketCreate.create(newTicket)
+            cartModel.updateOne({_id:cartId}, cart)
+            res.send(ticketCreate)
+
+        }else{
+            res.send("El carrito no existe.")
+        }
+
+    } catch{
+        res.send(error.message)
+    }
+})
+
+export {router as cartsRouter} 

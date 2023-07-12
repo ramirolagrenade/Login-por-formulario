@@ -18,6 +18,11 @@ export default class CartMongo {
 
     }
 
+    findById = async(id) => {
+        const cart = cartModel.findById(id)
+        return cart
+    }
+
     async getCart(cid) {
 
         const cart = await cartModel.findOne({ _id: cid })

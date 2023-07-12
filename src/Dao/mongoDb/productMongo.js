@@ -13,6 +13,10 @@ export default class ProductMongo {
         }
     }
 
+    findById = async(id) => {
+        const product = productModel.findById(id)
+        return product
+    }
     getProduct = async (pid) => {
         const product = await productModel.findOne({ _id: pid })
 

@@ -7,8 +7,11 @@ const messageMongo = new MessageMongo()
 
 router.get('/', async (req,res)=>{
 
+    let newProduct = '  '
+
     const result = await messageMongo.addMessage(newProduct)
 
+    
 
     // res.render('')
     res.status(result.code).send({

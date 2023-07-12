@@ -18,7 +18,7 @@ import { options } from './config/options.js'
 
 export const PORT = options.server.port 
 const app = express() 
-const httServer = app.listen(PORT,() => console.log( `servidro funcionando en el PORT: ${PORT}}`))
+const httServer = app.listen(PORT,() => console.log( `servidro funcionando en el PORT: ${PORT}`))
 
 app.use(express.json()) 
 app.use(express.urlencoded({extended:true}))
