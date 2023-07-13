@@ -4,6 +4,8 @@ import cartModel from '../Dao/models/cartModel.js'
 import ProductMongo from '../Dao/mongoDb/productMongo.js'
 import {v4 as uuidv4} from "uuid"
 import productModel from '../Dao/models/productModel.js'
+import { options } from '../config/options.js'
+import { transporter } from '../config/gmail.js'
 
 const router = Router()
 const cartMongo = new CartMongo()
@@ -141,6 +143,15 @@ router.post("/:cid/purchase",async(req,res)=>{
 
             const ticketCreate = await ticketCreate.create(newTicket)
             cartModel.updateOne({_id:cartId}, cart)
+
+            const mail = await transporter.sendMail({
+                from: options.gmail.adminAccount,
+                to: req.session.user,
+                subject: "Compra de Productos TLP.",
+                html: ticketCreate
+            })
+            console.log('contenido del mail: ' + mail)
+
             res.send(ticketCreate)
 
         }else{

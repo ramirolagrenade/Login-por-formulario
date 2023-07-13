@@ -18,5 +18,9 @@ export const options = {
         clientID: process.env.CLIENTID,
         clientSecret: process.env.CLIENTSECRET,
         callBackUrl: process.env.CALLBACKURL
-    }
+    },
+    gmail: {
+        adminAccount: process.env.ADMIN_EMAIL,
+        adminPass: process.env.ADMIN_PASS 
+    },
 }
