@@ -12,6 +12,8 @@ import productRouter from './router/products.router.js'
 import messageRouter from './router/message.router.js'
 import viewRouter from './router/router.views.js'
 import userRouter from './router/user.router.js'
+import { mockingRouter } from './router/mockingproducts.router.js'
+
 import initializePassport from './config/passport.config.js'
 import { options } from './config/options.js'
 
@@ -48,3 +50,4 @@ app.use('/api/carts', cartRouter)
 app.use('/api/chat', messageRouter)
 app.use('/api/products', productRouter)
 app.use('/api/session', userRouter)
+app.use('/mockingproducts', mockingRouter)
