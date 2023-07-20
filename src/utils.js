@@ -16,9 +16,9 @@ const { commerce, image, database, string, internet, person, phone, datatype, lo
 export const generateProduct = () => {
 
     return{
-        _id: DatabaseModule.mongodbObjectId(),
+        _id: database.mongodbObjectId(),
         title: commerce.productName(),
-        price: parseFloat(commerce.department()),
+        price: parseFloat(commerce.price()),
         description: lorem.lines(),
         stock: parseInt(string.numeric(2)),
         category: datatype.boolean() ? 'Terror' : 'Accion',

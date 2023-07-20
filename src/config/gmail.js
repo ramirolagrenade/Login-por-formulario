@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer"
-import { Options, options } from "./options.js"
+import { options } from "./options.js"
 
 const adminEmail = options.gmail.adminAccount
 const adminPass = options.gmail.adminPass

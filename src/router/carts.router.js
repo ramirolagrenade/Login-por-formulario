@@ -163,4 +163,4 @@ router.post("/:cid/purchase",async(req,res)=>{
     }
 })
 
-export {router as cartsRouter} 
+export default router
