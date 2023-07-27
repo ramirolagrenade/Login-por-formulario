@@ -3,6 +3,9 @@ import { dirname } from 'path'
 import bcrypt from 'bcrypt'
 import { Faker,en } from '@faker-js/faker'
 import { title } from 'process'
+import path from 'path'
+
+export const ___dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export const createHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10))
 export const validatePassword = (password, user) => bcrypt.compareSync(password, user.password)

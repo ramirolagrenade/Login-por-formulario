@@ -15,6 +15,8 @@ import userRouter from './router/user.router.js'
 import mockingRouter from './router/mockingproducts.router.js'
 import errorProduct from './router/errorProduct.router.js'
 import { errorHandler } from './middlewares/errorHandler.js'
+import { addLogger } from './logger/logger.js'
+import loggerRouter from './router/logger.router.js'
 
 import initializePassport from './config/passport.config.js'
 import { options } from './config/options.js'
@@ -56,3 +58,6 @@ app.use('/mockingproducts', mockingRouter)
 
 app.use('/errorProduct', errorProduct)
 app.use(errorHandler)
+
+app.use("/niveles", loggerRouter)
+app.use(addLogger)
