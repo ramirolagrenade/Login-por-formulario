@@ -59,5 +59,5 @@ app.use('/mockingproducts', mockingRouter)
 app.use('/errorProduct', errorProduct)
 app.use(errorHandler)
 
-app.use("loggerTest", loggerRouter)
+app.use("/loggerTest", loggerRouter)
 app.use(addLogger)
