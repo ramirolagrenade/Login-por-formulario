@@ -2,7 +2,7 @@ import { Router } from "express"
 
 const router = Router()
 
-app.get("/niveles", (req,res)=>{
+app.get("/", (req,res)=>{
     req.logger.silly("nivel silly")
     req.logger.verbose("nivel verbose")
     req.logger.debug("nivel debug")

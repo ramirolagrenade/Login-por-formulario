@@ -42,7 +42,7 @@ const devLogger = winston.createLogger({
 const prodLogger = winston.createLogger({
     transports:[
         new winston.transports.Console({ level: "info"}),
-        new winston.transports.File({filename: path.join(__dirname,"./errors.log"), level:"warn" })
+        new winston.transports.File({filename: path.join(__dirname,"./errors.log"), level:"warn" })//level??
     ]
 })
 
