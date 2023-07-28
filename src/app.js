@@ -48,7 +48,6 @@ app.engine("handlebars",handlebars.engine())
 app.set("views", __dirname + "/views")
 app.set("view engine", "handlebars")
 
-
 app.use('/', viewRouter)
 app.use('/api/carts', cartRouter)
 app.use('/api/chat', messageRouter)
