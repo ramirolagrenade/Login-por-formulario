@@ -26,6 +26,10 @@ const productSchema = new mongoose.Schema({
     },
     thumbnail:{
         type: String
+    },
+    ower:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"users"
     }
 })
 

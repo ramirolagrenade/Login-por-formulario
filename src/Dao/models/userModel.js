@@ -7,7 +7,11 @@ const schema = new mongoose.Schema({
     last_name:String,
     email:String,
     password:String,
-    rol: String,
+    rol: {
+        type: String,
+        enum: ["user","admin","premium"],
+        default: "user",
+    },
     carts: {
         type:[
             {

@@ -1,6 +1,19 @@
 import dotenv from 'dotenv'
+import { ___dirname } from "../utils.js"
+import path from "path"
+import { Command } from 'commander'
 
-dotenv.config()
+const program = new Command()
+
+program
+.option("-mode <modo>", "Modo de Inicio", "dev")
+program.parse()
+
+const environment = program.opts()
+
+const pathEnvironment = environment.Mode === "prod" ? path.join(___dirname, "../.env.production") : path.join(___dirname, "../.env.development")
+
+dotenv.config({path: pathEnvironment})
 
 export const options = {
     fileSystem: {
@@ -21,6 +34,7 @@ export const options = {
     },
     gmail: {
         adminAccount: process.env.ADMIN_EMAIL,
-        adminPass: process.env.ADMIN_PASS 
+        adminPass: process.env.ADMIN_PASS,
+        emailToken: process.env.SECRET_TOKEM_EMAIL
     },
 }
