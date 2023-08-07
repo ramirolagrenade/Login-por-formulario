@@ -7,7 +7,7 @@ import path from 'path'
 import jwt from 'jsonwebtoken'
 import { options } from './config/options.js'
 
-export const ___dirname = path.dirname(fileURLToPath(import.meta.url))
+export const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export const createHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10))
 
@@ -47,7 +47,7 @@ export const verifyEmailToken = (token) =>{
     }
 }
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+// const __filename = fileURLToPath(import.meta.url)
+// const __dirname = dirname(__filename)
 
-export default __dirname
+// export default __dirname

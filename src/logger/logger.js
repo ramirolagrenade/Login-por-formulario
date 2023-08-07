@@ -1,6 +1,6 @@
 import winston from "winston"
 import * as dotenv from "dotenv"
-import { ___dirname } from "../utils.js"
+import  {__dirname}  from "../utils.js"
 import path  from "path"
 
 dotenv.config()
@@ -42,7 +42,7 @@ const devLogger = winston.createLogger({
 const prodLogger = winston.createLogger({
     transports:[
         new winston.transports.Console({ level: "info"}),
-        new winston.transports.File({filename: path.join(__dirname,"./errors.log"), level:"warn" })//level??
+        new winston.transports.File({filename: path.join(__dirname,"./errors.log"), level:"warn" })
     ]
 })
 
