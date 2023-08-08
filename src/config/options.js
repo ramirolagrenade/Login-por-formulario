@@ -1,4 +1,4 @@
-import dotenv from 'dotenv'
+import * as dotenv from 'dotenv'
 import  {__dirname}  from "../utils.js"
 import path from "path"
 import { Command } from 'commander'
@@ -10,6 +10,8 @@ program
 program.parse()
 
 const environment = program.opts()
+
+console.log(environment)
 
 const pathEnvironment = environment.Mode === "prod" ? path.join(__dirname, "../.env.production") : path.join(__dirname, "../.env.development")
 
