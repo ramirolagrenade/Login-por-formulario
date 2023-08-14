@@ -5,6 +5,8 @@ import mongoose from 'mongoose'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import passport from 'passport'
+import {swaggerSpecs} from './config/docConfig.js'
+import swaggerUi from 'swagger-ui-express'
 
 import "./config/dbConnection.js"
 import cartRouter from './router/carts.router.js'
@@ -60,3 +62,5 @@ app.use(errorHandler)
 
 app.use("/loggerTest", loggerRouter)
 app.use(addLogger)
+
+app.use("/api/docs", swaggerUi.serve,swaggerUi.setup(swaggerSpecs))

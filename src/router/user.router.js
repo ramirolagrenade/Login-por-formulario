@@ -59,7 +59,7 @@ router.get('/current', async (req,res)=>{
     
 })
 
-router.put("/premium/:uid", checkRole([admin]),async(req,res)=>{
+router.put("/premium/:uid", checkRole(['admin']),async(req,res)=>{
     try{
         const userId = req.params.uid
         const user = await userModel.findById(userId)
