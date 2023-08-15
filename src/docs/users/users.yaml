@@ -101,12 +101,20 @@ components:
         password:
           type: string
           description: contraseña del usuario hasheada
+        rol:
+          type: string
+          description: rol del usuario
+        carts:
+          type: ObjectId
+          description: id del carrito vinculado al usuario
       example:
         _id: ObjectId('ahjg7862jahsgd871263')
-        first_name: pepe
-        last_name: suarez
-        email: pepe@gmail.com
+        first_name: ramiro
+        last_name: lagrenade
+        email: rala@gmail.com
         password: $jkasd981273kjahsd8912
+        rol: admin
+        carts: ObjectId('kjsd3jew9iur4ji')
   requestBodies:
     updateUser:
       type: object
@@ -122,9 +130,9 @@ components:
           description: correo del usuario, campo unico
         password:
           type: string
-          description: contraseña del usuario
+          description: contraseña del usuario hasheada
       example:
-        first_name: pepe
-        last_name: suarez
-        email: pepe@gmail.com
-        password: "1234"
+        first_name: ramiro
+        last_name: lagrenade
+        email: rala@gmail.com
+        password: $jkasd981273kjahsd8912

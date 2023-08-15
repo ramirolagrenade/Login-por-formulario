@@ -18,24 +18,20 @@ paths:
 
 components:
   schemas:
-    Products:
+    Carts:
       type: object
       properties:
-        title: 
-          type: string
-          description: Titulo
-        price: 
-          type: number
-          description: Precio
-        code: 
-          type: string
-          desciption: Codigo de producto
-        stock: 
-          type: Number
-          description: Cantidad de productos disponibles
-        category: 
-          type: string
-          description: Categoria
-        owner: 
-          type: ObjectId
-          description: Creador del producto
+        product:
+          type: object
+          description: podructos dentro del carrito
+            id:
+              type: objectId
+              properties: id de los productos dentro del carrito
+            quantity:
+              type: number
+              description: cantidad de productos
+      example:
+        id: ObjectId('sjf84wur84jr9wkr')
+        quantity: 1
+    
+        

@@ -27,9 +27,6 @@ components:
         price: 
           type: number
           description: Precio
-        code: 
-          type: string
-          desciption: Codigo de producto
         stock: 
           type: Number
           description: Cantidad de productos disponibles
@@ -39,3 +36,18 @@ components:
         owner: 
           type: ObjectId
           description: Creador del producto
+        description:
+          type: string
+          description: descripcion del producto
+        thumbnail:
+          type: string
+          description: imagen del producto
+      example:
+        title: Producto
+        price: 3000 $
+        stock: 17
+        category: terror
+        owen: ObjectId('lkjdfiw93iw')
+        description: descripcion del juego
+        thumbnail: juego023.jpg
+      
