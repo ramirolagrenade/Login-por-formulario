@@ -11,6 +11,7 @@ const router = Router()
 const userMongo = new UserMongo()
 
 router.post('/register', passport.authenticate('register', {failureRedirect:'/failregister'}), async (req,res) =>{
+    console.log('errorrrrrrr')
     res.send({status:"succes", message:"Usuario registrado"})
 
 })

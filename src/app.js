@@ -7,8 +7,8 @@ import MongoStore from 'connect-mongo'
 import passport from 'passport'
 import {swaggerSpecs} from './config/docConfig.js'
 import swaggerUi from 'swagger-ui-express'
+import {connectDB} from "./config/dbConnection.js"
 
-import "./config/dbConnection.js"
 import cartRouter from './router/carts.router.js'
 import productRouter from './router/products.router.js'
 import messageRouter from './router/message.router.js'
@@ -33,7 +33,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static(__dirname + '/public'))
 
 app.use(session({
-    store: new MongoStore({
+    store: MongoStore.create({
         mongoUrl: options.mongoDB.url,
         ttl: 1500
     }),
@@ -41,6 +41,8 @@ app.use(session({
     resave: false,
     saveUninitialized:false
 }))
+
+// console.log(options) 
 
 initializePassport()
 app.use (passport.initialize())
@@ -58,9 +60,10 @@ app.use('/api/session', userRouter)
 app.use('/mockingproducts', mockingRouter)
 
 app.use('/errorProduct', errorProduct)
-app.use(errorHandler)
+//app.use(errorHandler)
 
 app.use("/loggerTest", loggerRouter)
 app.use(addLogger)
+connectDB();
 
 app.use("/api/docs", swaggerUi.serve,swaggerUi.setup(swaggerSpecs))

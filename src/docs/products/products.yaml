@@ -47,7 +47,7 @@ components:
         price: 3000 $
         stock: 17
         category: terror
-        owen: ObjectId('lkjdfiw93iw')
+        owen: ObjectId('lkjdfiw93iw') 
         description: descripcion del juego
         thumbnail: juego023.jpg
       

@@ -16,13 +16,15 @@ const initializePassport = () => {
         {passReqToCallback:true, usernameField:'email'}, 
         async (req,username, password,done) =>{
             const { first_name, last_name ,age , email, carts } = req.body
+         
             try {
-                const user = await userMongo.findOne(username)
+                const user = await userMongo.findOne(username);
+
                 if(user){
                     console.log('El usuario existe')
                     return done(null,false)
                 }
-                let rol = 'Usuario'
+                let rol = 'user'
                 const newUser = {
                     first_name, 
                     last_name, 
@@ -34,6 +36,7 @@ const initializePassport = () => {
                 }
 
                 const result = await userMongo.addUser(newUser)
+                console.log(result);
                 return done(null, result.manssage)
 
             } catch (error) {

@@ -24,12 +24,12 @@ components:
         product:
           type: object
           description: podructos dentro del carrito
-            id:
-              type: objectId
-              properties: id de los productos dentro del carrito
-            quantity:
-              type: number
-              description: cantidad de productos
+          id:
+            type: objectId
+            properties: id de los productos dentro del carrito
+          quantity:
+            type: number
+            description: cantidad de productos
       example:
         id: ObjectId('sjf84wur84jr9wkr')
         quantity: 1
